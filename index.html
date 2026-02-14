@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Render Node System - Docs</title>
 
+    <script>
+        // Declaramos la variable de control aquí arriba para evitar errores de referencia (ReferenceError)
+        var submitted = false;
+    </script>
+
     <style>
         /* --- VARIABLES DE TEMA --- */
         :root {
@@ -132,6 +137,8 @@
             justify-content: space-between;
             gap: 30px;
             box-shadow: var(--shadow);
+            position: relative;
+            min-height: 100px;
         }
 
         .newsletter-text { flex: 1; }
@@ -143,6 +150,7 @@
             gap: 10px;
             flex: 1;
             max-width: 500px;
+            transition: opacity 0.3s ease;
         }
 
         .newsletter-form input {
@@ -172,6 +180,21 @@
         }
 
         .newsletter-form button:hover { background-color: #3d8b40; }
+
+        /* Mensaje de éxito */
+        #success-message {
+            display: none;
+            text-align: center;
+            color: var(--accent-green);
+            font-weight: bold;
+            flex: 1;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* --- SECCIONES NODOS --- */
         .section-header {
@@ -312,15 +335,28 @@
         <!-- NEWSLETTER SECTION -->
         <div class="newsletter-box">
             <div class="newsletter-text">
-                <h2 data-i18n="news-title">Mantente informado</h2>
-                <p data-i18n="news-desc">Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.</p>
+                <h2 data-i18n="news-title" id="news-title-text">Mantente informado</h2>
+                <p data-i18n="news-desc" id="news-desc-text">Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.</p>
             </div>
             
-            <!-- FORMULARIO CONECTADO A MAILERLITE -->
-            <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2113828/forms/179375677362930962/subscribe" method="POST">
+            <!-- IFRAME OCULTO: Evita la redirección -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage(); }"></iframe>
+
+            <!-- FORMULARIO CONECTADO A MAILERLITE CON TARGET AL IFRAME -->
+            <form class="newsletter-form" 
+                  id="newsletter-form"
+                  action="https://assets.mailerlite.com/jsonp/2113828/forms/179375677362930962/subscribe" 
+                  method="POST" 
+                  target="hidden_iframe"
+                  onsubmit="submitted=true;">
                 <input type="email" name="fields[email]" placeholder="tu@email.com" required>
                 <button type="submit" data-i18n="news-btn">Suscribirse</button>
             </form>
+
+            <!-- Mensaje de confirmación -->
+            <div id="success-message">
+                <span data-i18n="news-success">¡Gracias! Te has suscrito correctamente.</span>
+            </div>
         </div>
 
         <!-- SECCIONES DE NODOS -->
@@ -539,12 +575,21 @@
     </div>
 
     <script>
+        // Función para mostrar el mensaje de éxito
+        function showSuccessMessage() {
+            document.getElementById('newsletter-form').style.display = 'none';
+            document.getElementById('news-title-text').style.display = 'none';
+            document.getElementById('news-desc-text').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        }
+
         const translations = {
             es: {
                 "header-subtitle": "Documentación oficial del sistema de gestión nodal de escenas para 3ds Max y V-Ray.",
                 "news-title": "Mantente informado",
                 "news-desc": "Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.",
                 "news-btn": "Suscribirse",
+                "news-success": "¡Gracias! Te has suscrito correctamente.",
                 "sec1-title": "Scene Sources (Fuentes)",
                 "card-geo": "Captura objetos geométricos. Filtra por selección, capas o nombres específicos.",
                 "card-light": "Administrador de iluminación. Recopila luces V-Ray y estándar.",
@@ -573,6 +618,7 @@
                 "news-title": "Stay Updated",
                 "news-desc": "Subscribe to get news about the Beta and official launch.",
                 "news-btn": "Subscribe",
+                "news-success": "Thank you! You have successfully subscribed.",
                 "sec1-title": "Scene Sources",
                 "card-geo": "Captures geometric objects. Filters by selection, layers, or specific names.",
                 "card-light": "Lighting manager. Collects V-Ray and standard lights.",
