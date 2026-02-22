@@ -6,7 +6,7 @@
     <title>Render Node System - Docs</title>
 
     <script>
-        // Declaramos la variable de control aquí arriba para evitar errores de referencia (ReferenceError)
+        // Declaramos la variable de control aquí arriba para evitar errores de referencia
         var submitted = false;
     </script>
 
@@ -37,7 +37,7 @@
 
         h1, h2, h3 { margin: 0; font-weight: 500; }
 
-        /* --- LANGUAGE SWITCHER --- */
+        /* --- SELECTOR DE IDIOMA --- */
         .lang-switch {
             position: absolute;
             top: 20px;
@@ -325,14 +325,14 @@
 
     <div class="container">
 
-        <!-- VIDEO SECTION -->
+        <!-- SECCIÓN DE VIDEO ACTUALIZADA -->
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="Render Node System Demo" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/Jbooos_eRYI" title="Render Node System Demo" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
 
-        <!-- NEWSLETTER SECTION -->
+        <!-- SECCIÓN NEWSLETTER -->
         <div class="newsletter-box">
             <div class="newsletter-text">
                 <h2 data-i18n="news-title" id="news-title-text">Mantente informado</h2>
@@ -342,7 +342,7 @@
             <!-- IFRAME OCULTO: Evita la redirección -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage(); }"></iframe>
 
-            <!-- FORMULARIO CONECTADO A MAILERLITE CON TARGET AL IFRAME -->
+            <!-- FORMULARIO CONECTADO A MAILERLITE -->
             <form class="newsletter-form" 
                   id="newsletter-form"
                   action="https://assets.mailerlite.com/jsonp/2113828/forms/179375677362930962/subscribe" 
@@ -575,7 +575,7 @@
     </div>
 
     <script>
-        // Función para mostrar el mensaje de éxito
+        // Función para mostrar el mensaje de éxito tras el envío del formulario
         function showSuccessMessage() {
             document.getElementById('newsletter-form').style.display = 'none';
             document.getElementById('news-title-text').style.display = 'none';
