@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -316,8 +316,8 @@
 
     <header>
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="setLanguage('es')" id="btn-es">ES</button>
-            <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+            <button class="lang-btn" onclick="setLanguage('es')" id="btn-es">ES</button>
+            <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">EN</button>
         </div>
         <h1>Render Node System</h1>
         <p data-i18n="header-subtitle">Documentación oficial del sistema de gestión nodal de escenas para 3ds Max y V-Ray.</p>
@@ -325,7 +325,7 @@
 
     <div class="container">
 
-        <!-- SECCIÓN DE VIDEO ACTUALIZADA -->
+        <!-- SECCIÓN DE VIDEO -->
         <div class="video-container">
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/Jbooos_eRYI" title="Render Node System Demo" frameborder="0" allowfullscreen></iframe>
@@ -575,7 +575,7 @@
     </div>
 
     <script>
-        // Función para mostrar el mensaje de éxito tras el envío del formulario
+        // Función para mostrar el mensaje de éxito
         function showSuccessMessage() {
             document.getElementById('newsletter-form').style.display = 'none';
             document.getElementById('news-title-text').style.display = 'none';
@@ -674,6 +674,9 @@
 
         function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
         document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeLightbox(); });
+
+        // Establecer inglés por defecto al cargar
+        setLanguage('en');
     </script>
 </body>
 </html>
