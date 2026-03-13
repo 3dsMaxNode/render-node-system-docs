@@ -37,7 +37,7 @@
 
         h1, h2, h3 { margin: 0; font-weight: 500; }
 
-        /* --- SELECTOR DE IDIOMA --- */
+        /* --- LANGUAGE SWITCHER --- */
         .lang-switch {
             position: absolute;
             top: 20px;
@@ -258,7 +258,7 @@
             transition: opacity 0.3s; display: block;
         }
 
-        .img-placeholder-fallback, .no-image-placeholder {
+        .img-placeholder-fallback {
             width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             background-color: #2a2a2a; color: #666; padding: 10px; box-sizing: border-box;
@@ -325,24 +325,22 @@
 
     <div class="container">
 
-        <!-- SECCIÓN DE VIDEO ACTUALIZADA -->
+        <!-- VIDEO SECTION -->
         <div class="video-container">
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/nzHWO-GOvEU" title="Render Node System Demo" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
 
-        <!-- SECCIÓN NEWSLETTER -->
+        <!-- NEWSLETTER SECTION -->
         <div class="newsletter-box">
             <div class="newsletter-text">
                 <h2 data-i18n="news-title" id="news-title-text">Mantente informado</h2>
                 <p data-i18n="news-desc" id="news-desc-text">Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.</p>
             </div>
             
-            <!-- IFRAME OCULTO: Evita la redirección -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage(); }"></iframe>
 
-            <!-- FORMULARIO CONECTADO A MAILERLITE -->
             <form class="newsletter-form" 
                   id="newsletter-form"
                   action="https://assets.mailerlite.com/jsonp/2113828/forms/179375677362930962/subscribe" 
@@ -353,13 +351,12 @@
                 <button type="submit" data-i18n="news-btn">Suscribirse</button>
             </form>
 
-            <!-- Mensaje de confirmación -->
             <div id="success-message">
                 <span data-i18n="news-success">¡Gracias! Te has suscrito correctamente.</span>
             </div>
         </div>
 
-        <!-- SECCIONES DE NODOS -->
+        <!-- SECTION 1: SOURCES -->
         <div class="section-header">
             <div class="section-number">1</div>
             <h2 data-i18n="sec1-title">Scene Sources (Fuentes)</h2>
@@ -417,6 +414,7 @@
             </article>
         </div>
 
+        <!-- SECTION 2: IDS & ELEMENTS -->
         <div class="section-header">
             <div class="section-number">2</div>
             <h2 data-i18n="sec2-title">IDs & Render Elements</h2>
@@ -442,10 +440,10 @@
                     <p data-i18n="card-matid">Control de IDs a nivel de material para MultiMattes automáticos.</p>
                 </div>
             </article>
+            <!-- ID RGB PASS: Ahora vinculado a H.png -->
             <article class="node-card">
-                <div class="no-image-placeholder">
-                    <span class="icon">🎨</span>
-                    <span data-i18n="no-image">No Image</span>
+                <div class="img-container" onclick="openLightbox('H.png', 'ID RGB Pass')">
+                    <img src="H.png" alt="ID RGB Pass" style="object-position: top center;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-beta">Beta</span>
@@ -455,7 +453,7 @@
             </article>
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('H.png', 'Render Elements')">
-                    <img src="H.png" alt="Render Elements">
+                    <img src="H.png" alt="Render Elements" style="object-position: bottom center;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-process">Processing</span>
@@ -465,6 +463,7 @@
             </article>
         </div>
 
+        <!-- SECTION 3: RENDER CONFIG -->
         <div class="section-header">
             <div class="section-number">3</div>
             <h2 data-i18n="sec3-title">Render Configuration</h2>
@@ -472,7 +471,7 @@
         <div class="grid">
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('I.png', 'Render Setup Node')">
-                    <img src="I.png" alt="Render Chain Context" style="object-position: left;">
+                    <img src="I.png" alt="Render Setup" style="object-position: left top;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-setting">Settings</span>
@@ -482,7 +481,7 @@
             </article>
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('I.png', 'V-Ray Sampling Node')">
-                    <img src="I.png" alt="Render Chain Context" style="object-position: center;">
+                    <img src="I.png" alt="V-Ray Sampling" style="object-position: center top;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-setting">V-Ray</span>
@@ -490,10 +489,10 @@
                     <p data-i18n="card-sampling">Control de calidad de imagen: Noise Threshold, Max Subdivs y AA filter.</p>
                 </div>
             </article>
+            <!-- MOTION BLUR & DOF: Ahora vinculado a I.png -->
             <article class="node-card">
-                <div class="no-image-placeholder">
-                    <span class="icon">📷</span>
-                    <span data-i18n="no-image">No Image</span>
+                <div class="img-container" onclick="openLightbox('I.png', 'Motion Blur & DoF')">
+                    <img src="I.png" alt="Motion Blur & DoF" style="object-position: center bottom;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-beta">V-Ray</span>
@@ -503,7 +502,7 @@
             </article>
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('I.png', 'Output File Node')">
-                    <img src="I.png" alt="Render Chain Context" style="object-position: right;">
+                    <img src="I.png" alt="Output File" style="object-position: right top;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-setting">Output</span>
@@ -513,6 +512,7 @@
             </article>
         </div>
 
+        <!-- SECTION 4: STATE & EXECUTION -->
         <div class="section-header">
             <div class="section-number">4</div>
             <h2 data-i18n="sec4-title">State & Execution</h2>
@@ -520,7 +520,7 @@
         <div class="grid">
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('J.png', 'Scene State Node')">
-                    <img src="J.png" alt="Scene State Context" style="object-position: left;">
+                    <img src="J.png" alt="Scene State" style="object-position: left;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-execute">State</span>
@@ -530,7 +530,7 @@
             </article>
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('J.png', 'Render V-Ray Node')">
-                    <img src="J.png" alt="Scene State Context" style="object-position: center right;">
+                    <img src="J.png" alt="Render V-Ray" style="object-position: center right;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-execute">Execute</span>
@@ -540,7 +540,7 @@
             </article>
             <article class="node-card">
                 <div class="img-container" onclick="openLightbox('J.png', 'Render Backburner Node')">
-                    <img src="J.png" alt="Scene State Context" style="object-position: bottom right;">
+                    <img src="J.png" alt="Render Backburner" style="object-position: bottom right;">
                 </div>
                 <div class="card-content">
                     <span class="node-type type-execute">Farm</span>
@@ -575,7 +575,6 @@
     </div>
 
     <script>
-        // Función para mostrar el mensaje de éxito
         function showSuccessMessage() {
             document.getElementById('newsletter-form').style.display = 'none';
             document.getElementById('news-title-text').style.display = 'none';
@@ -675,7 +674,6 @@
         function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
         document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeLightbox(); });
 
-        // Establecer inglés por defecto al cargar
         setLanguage('en');
     </script>
 </body>
