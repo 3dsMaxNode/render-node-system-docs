@@ -37,7 +37,7 @@
 
         h1, h2, h3 { margin: 0; font-weight: 500; }
 
-        /* --- SELECTOR DE IDIOMA --- */
+        /* --- LANGUAGE SWITCHER --- */
         .lang-switch {
             position: absolute;
             top: 20px;
@@ -122,6 +122,39 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        /* --- SECCIÓN DOWNLOAD BETA --- */
+        .download-container {
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--accent-blue);
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.3);
+        }
+
+        .download-btn:hover {
+            background-color: #1976d2;
+            transform: translateY(-3px);
+        }
+
+        .download-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
         /* --- SECCIÓN NEWSLETTER --- */
@@ -370,11 +403,20 @@
             </div>
         </div>
 
+        <!-- NEW DOWNLOAD BETA SECTION -->
+        <div class="download-container">
+            <!-- BOTÓN VINCULADO A LEMON SQUEEZY -->
+            <a href="https://3dsrendernodal.lemonsqueezy.com/checkout/buy/29391f87-5391-4b72-a417-ec57dbc18ae3" target="_blank" class="download-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                <span data-i18n="download-btn">Download Beta</span>
+            </a>
+        </div>
+
         <!-- NEWSLETTER SECTION -->
         <div class="newsletter-box">
             <div class="newsletter-text">
                 <h2 data-i18n="news-title" id="news-title-text">Mantente informado</h2>
-                <p data-i18n="news-desc" id="news-desc-text">Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.</p>
+                <p data-i18n="news-desc" id="news-desc-text">Subscribite para las novedades y actualizaciones.</p>
             </div>
             
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage(); }"></iframe>
@@ -394,7 +436,7 @@
             </div>
         </div>
 
-        <!-- SECTION 1: SOURCES -->
+        <!-- SECCIONES DE NODOS -->
         <div class="section-header">
             <div class="section-number">1</div>
             <h2 data-i18n="sec1-title">Scene Sources (Fuentes)</h2>
@@ -452,7 +494,6 @@
             </article>
         </div>
 
-        <!-- SECTION 2: IDS & ELEMENTS -->
         <div class="section-header">
             <div class="section-number">2</div>
             <h2 data-i18n="sec2-title">IDs & Render Elements</h2>
@@ -500,7 +541,6 @@
             </article>
         </div>
 
-        <!-- SECTION 3: RENDER CONFIG -->
         <div class="section-header">
             <div class="section-number">3</div>
             <h2 data-i18n="sec3-title">Render Configuration</h2>
@@ -548,7 +588,6 @@
             </article>
         </div>
 
-        <!-- SECTION 4: STATE & EXECUTION -->
         <div class="section-header">
             <div class="section-number">4</div>
             <h2 data-i18n="sec4-title">State & Execution</h2>
@@ -605,7 +644,6 @@
         <p data-i18n="footer">&copy; 2024 Render Node System. Desarrollado para optimizar pipelines de 3ds Max.</p>
     </footer>
 
-    <!-- VISOR CON ERROR HANDLER -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Full size view">
         <div id="lightbox-error">Image not found / Imagen no encontrada</div>
@@ -623,8 +661,9 @@
         const translations = {
             es: {
                 "header-subtitle": "Documentación oficial del sistema de gestión nodal de escenas para 3ds Max y V-Ray.",
+                "download-btn": "Descargar Beta",
                 "news-title": "Mantente informado",
-                "news-desc": "Suscríbete para recibir noticias sobre la Beta y el lanzamiento oficial.",
+                "news-desc": "Subscribite para las novedades y actualizaciones.",
                 "news-btn": "Suscribirse",
                 "news-success": "¡Gracias! Te has suscrito correctamente.",
                 "sec1-title": "Scene Sources (Fuentes)",
@@ -652,8 +691,9 @@
             },
             en: {
                 "header-subtitle": "Official documentation for the nodal scene management system for 3ds Max and V-Ray.",
+                "download-btn": "Download Beta",
                 "news-title": "Stay Updated",
-                "news-desc": "Subscribe to get news about the Beta and official launch.",
+                "news-desc": "Subscribe for news and updates.",
                 "news-btn": "Subscribe",
                 "news-success": "Thank you! You have successfully subscribed.",
                 "sec1-title": "Scene Sources",
@@ -690,7 +730,6 @@
             document.getElementById(`btn-${lang}`).classList.add('active');
         }
 
-        // Manejo de errores en las miniaturas
         document.querySelectorAll('.node-card img').forEach(img => {
             img.onerror = function() {
                 this.style.display = 'none';
@@ -701,7 +740,6 @@
             };
         });
 
-        // Manejo de error específico en el visor (Lightbox)
         document.getElementById('lightbox-img').onerror = function() {
             this.style.display = 'none';
             document.getElementById('lightbox-error').style.display = 'block';
@@ -712,11 +750,8 @@
             const img = document.getElementById('lightbox-img');
             const errorMsg = document.getElementById('lightbox-error');
             const caption = document.getElementById('lightbox-caption');
-            
-            // Resetear estados antes de abrir
             img.style.display = 'block';
             errorMsg.style.display = 'none';
-            
             img.src = imageSrc;
             caption.innerText = captionText;
             lightbox.style.display = 'flex';
