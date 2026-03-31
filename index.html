@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Render Node System - Docs</title>
 
+    <!-- Script oficial de Gumroad para la ventana emergente (Overlay) -->
+    <script src="https://gumroad.com/js/gumroad.js"></script>
+
     <script>
         // Variable de control para el formulario
         var submitted = false;
@@ -330,9 +333,11 @@
         <div class="download-section">
             <h2 data-i18n="dl-title">Get Render Node System</h2>
             <p data-i18n="dl-subtitle" style="color: var(--text-secondary); margin-bottom: 25px;">Download the latest version and start optimizing your workflow.</p>
-            <a href="https://maxnode.gumroad.com/l/iepgm" target="_blank" class="btn-gumroad">
+            
+            <!-- El enlace ahora apunta a Gumroad con la clase necesaria para el overlay -->
+            <a href="https://maxnode.gumroad.com/l/iepgm" class="btn-gumroad gumroad-button">
                 <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                <span data-i18n="dl-button">Download on Gumroad</span>
+                <span data-i18n="dl-button">Get on Gumroad</span>
             </a>
         </div>
 
@@ -595,7 +600,7 @@
                 "header-subtitle": "Documentación oficial del sistema de gestión nodal de escenas para 3ds Max y V-Ray.",
                 "dl-title": "Consigue Render Node System",
                 "dl-subtitle": "Descarga la última versión y comienza a optimizar tu flujo de trabajo.",
-                "dl-button": "Descargar en Gumroad",
+                "dl-button": "Obtener en Gumroad",
                 "news-title": "Mantente informado",
                 "news-desc": "Suscríbete para recibir novedades y actualizaciones.",
                 "news-btn": "Suscribirse",
@@ -626,7 +631,7 @@
                 "header-subtitle": "Official documentation for the nodal scene management system for 3ds Max and V-Ray.",
                 "dl-title": "Get Render Node System",
                 "dl-subtitle": "Download the latest version and start optimizing your workflow.",
-                "dl-button": "Download on Gumroad",
+                "dl-button": "Get on Gumroad",
                 "news-title": "Keep informed",
                 "news-desc": "Subscribe for news and updates.",
                 "news-btn": "Subscribe",
